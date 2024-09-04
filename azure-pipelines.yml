@@ -1,0 +1,67 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- none
+
+strategy:
+ matrix:
+    linux:
+     imageName: "ubuntu-latest"
+     JDKVersion: "1.10"
+    windows:
+     imageName: "windows-latest"
+     JDKVersion: "1.11"
+ maxParallel: "2"
+
+pool:
+  vmImage: $(imageName)
+
+parameters :
+- name: testtemplate
+  displayName: 'parameter for testing the template'
+  type: boolean
+  default: true
+
+steps:
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: $(JDKVersion)
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: "JaCoCo"
+    summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
+    reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
+    failIfCoverageEmpty: true
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo 'Hello world testing task'
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "Hello World powershell"
+
+- ${{ if eq(parameters.testtemplate, false) }}:
+  - template: simple-param.yml
+- ${{ if not eq(parameters.testtemplate, true) }}:
+  - template: test.yml
+
+
+
+

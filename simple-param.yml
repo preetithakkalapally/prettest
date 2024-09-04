@@ -1,0 +1,7 @@
+parameters:
+- name: testparam
+  type: boolean
+  default: false
+
+steps:
+-script: echo ${{parameters.testparam}}
