@@ -21,7 +21,7 @@ pool:
 
 parameters :
 - name: testtemplate
-  displayName: 'testing feature branch'
+  displayName: 'parameter for testing the template in dev for making sure---------'
   type: boolean
   default: true
 
