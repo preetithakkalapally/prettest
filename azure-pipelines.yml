@@ -21,7 +21,7 @@ pool:
 
 parameters :
 - name: testtemplate
-  displayName: 'parmeter for testing the template in test branch'
+  displayName: 'parmeter for testing rebase *******'
   type: boolean
   default: true
 
