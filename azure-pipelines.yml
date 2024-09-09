@@ -21,7 +21,7 @@ pool:
 
 parameters :
 - name: testtemplate
-  displayName: 'parameter for testing the template in dev for making sure---------'
+  displayName: 'parmeter for testing the template in test branch'
   type: boolean
   default: true
 
