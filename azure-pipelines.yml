@@ -21,7 +21,7 @@ pool:
 
 parameters :
 - name: testtemplate
-  displayName: 'parameter for testing the template in feature branch and testing git fetch and git diff, rebase'
+  displayName: 'testing feature branch'
   type: boolean
   default: true
 
