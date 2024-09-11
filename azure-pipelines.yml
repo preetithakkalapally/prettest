@@ -48,7 +48,8 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      echo 'Hello world testing task from the dev branch that is merged to master'
+      echo 'changes done in local test branch to test rebase'
+      echo 'Tetsing the diff in git'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
